@@ -7,8 +7,10 @@ RUN chown -R node:node /home/node/app
 WORKDIR /home/node/app
 
 COPY --chown=node:node package*.json .
+COPY --chown=node:node ./prisma prisma
 
 RUN  npm ci
+RUN npx prisma generate
 
 COPY --chown=node:node . .
 
